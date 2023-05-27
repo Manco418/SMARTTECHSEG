@@ -1,0 +1,91 @@
+/* Estilos gerais */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+  }
+  
+  .container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+  }
+  
+  /* Estilos do cabeçalho */
+  header {
+    background-image:url(imagem/IMG-20230515-WA0234.jpg) ;
+    background-position:center;
+    
+    background-color: #333;
+    color: #fff;
+    padding: 30px;
+  }
+  
+  header h1 {
+text-shadow: 20px#080808;
+    background-size: cover;
+    position: center;
+    box-sizing: content-box;
+    font-size: 28px;
+  }
+  header img{
+    width: 100px;
+    border-radius: 20px;
+    position: initial;
+  }
+  
+  /* Estilos da navegação */
+  nav {
+    background-color: #555;
+    padding: 10px;
+  }
+  
+  nav ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+  }
+  
+  nav ul li {
+    display: inline-block;
+  }
+  
+  nav ul li a {
+    color: #fff;
+    text-decoration: none;
+    padding: 10px;
+  }
+  
+  /* Estilos do conteúdo principal */
+  section {
+    margin-bottom: 20px;
+  }
+  
+  section h2 {
+    font-size: 24px;
+    margin: 0 0 10px;
+  }
+  
+  section p {
+    margin: 0;
+  }
+  
+  /* Estilos do rodapé */
+  footer {
+    background-color: #333;
+    color: #fff;
+    padding: 10px;
+    text-align: center;
+  }
+  
+  /* Estilos para dispositivos móveis */
+  @media screen and (max-width: 600px) {
+    header h1 {
+      font-size: 24px;
+    }
+  
+    nav ul li a {
+      padding: 5px;
+    }
+  }
+  

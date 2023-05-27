@@ -1,0 +1,355 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <link rel="stylesheet" href="style.css">
+  <title>Seguros Smart Tech - Página Inicial</title>
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+    
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+    }
+    
+    header {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      background-color: #333;
+      color: #fff;
+      padding: 20px;
+      z-index: 100;
+    }
+    
+    header ul {
+      list-style-type: none;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      justify-content: center;
+    }
+    
+    header ul li {
+      display: inline-block;
+      margin-right: 20px;
+    }
+    
+    header ul li a {
+      color: #fff;
+      text-decoration: none;
+      font-size: 18px;
+      font-weight: bold;
+      transition: color 0.3s;
+    }
+    
+    header ul li a:hover {
+      color: #ff9900;
+    }
+    
+    .section {
+      height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+      text-align: center;
+      padding: 20px;
+      color: #333;
+    }
+    
+    .section:nth-child(odd) {
+      background-color: #f2f2f2;
+    }
+    
+    .section:nth-child(even) {
+      background-color: #fff;
+    }
+    
+    h1 {
+      font-size: 36px;
+      margin: 0;
+      padding: 20px;
+    }
+    
+    p {
+      font-size: 18px;
+      margin: 0;
+      padding: 10px;
+    }
+  </style>
+</head>
+<body>
+  <header>
+  <img src="imagem/IMG-20230515-WA0231.jpg" alt="pb">
+    <ul>
+      <li><a href="index.html">Home</a></li>
+      <li><a href="about.html">Sobre</a></li>
+      <li><a href="contact.html">Contato</a></li>
+    </ul>
+  </header>
+  
+  <div class="section" id="home">
+    <h1>Bem-vindo à Seguros Smart Tech</h1>
+    <p>Proteja seu celular com os melhores seguros do mercado</p>
+  </div>
+  
+  <div class="section" id="sobre">
+    <h1>Sobre Nós</h1>
+    <p>A Seguros Smart Tech é uma empresa especializada em seguros para celulares. Oferecemos proteção contra danos acidentais, roubo, furto e muito mais.</p>
+  </div>
+  
+  <div class="section" id="contato">
+    <h1>Entre em Contato</h1>
+    <p>Telefone: (83)98131-6725</p>
+    <p>Email: Techsmart.jp@gmail.com</p>
+  </div>
+  
+  <script>
+    window.addEventListener('scroll', function() {
+      var header = document.querySelector('header');
+      var sections = document.querySelectorAll('.section');
+      var currentSection = '';
+      
+      sections.forEach(function(section) {
+        var sectionTop = section.offsetTop;
+        var sectionHeight = section.offsetHeight;
+        var scrollPosition = window.pageYOffset;
+        
+        if (scrollPosition >= sectionTop - sectionHeight / 2) {
+          currentSection = section.getAttribute('id');
+        }
+      });
+      
+      header.querySelectorAll('a').forEach(function(link) {
+        link.classList.remove('active');
+        
+        if (link.getAttribute('href').substring(1) === currentSection) {
+          link.classList.add('active');
+        }
+      });
+    });
+    
+    document.querySelectorAll('a[href^="#"]').forEach(function(anchor) {
+      anchor.addEventListener('click', function(e) {
+        e.preventDefault();
+        
+        var target = document.querySelector(this.getAttribute('href'));
+        var offset = header.offsetHeight;
+        
+        window.scrollTo({
+          top: target.offsetTop - offset,
+          behavior: 'smooth'
+        });
+      });
+    });
+  </script>
+  <section><!DOCTYPE html>
+    <html>
+    <head>
+      <title>Cotação de Seguro para Celulares</title>
+      <style>
+        body {
+          font-family: Arial, sans-serif;
+          margin: 0;
+          padding: 0;
+          display:contents;
+          justify-content: center;
+          align-items: center;
+          height: 100vh;
+          background-color: #f2f2f2;
+        }
+        
+        .container {
+          width: 450px;
+          padding: 30px;
+          background-color: #fff;
+          border-radius: 5px;
+          box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        
+        h1 {
+          font-size: 24px;
+          text-align: center;
+          margin-bottom: 20px;
+        }
+        
+        label {
+          font-weight: bold;
+          display: block;
+          margin-bottom: 10px;
+        }
+        
+        select {
+          padding: 5px;
+          width: 100%;
+          margin-bottom: 10px;
+        }
+        
+        input[type="submit"] {
+          padding: 10px 20px;
+          background-color: #007bff;
+          color: #fff;
+          border: none;
+          border-radius: 5px;
+          cursor: pointer;
+          font-size: 16px;
+        }
+        
+        .quote-result {
+          display: none;
+          margin-top: 20px;
+        }
+        
+        .quote-result h2 {
+          font-size: 18px;
+          margin-bottom: 10px;
+        }
+        
+        .quote-result p {
+          font-size: 16px;
+          margin-bottom: 5px;
+        }
+      </style>
+    </head>
+    <body>
+      <div class="container">
+        
+        <h1>Cotação</h1>
+        <form id="quote-form">
+          <label for="marca">Selecione a marca do celular:</label>
+          <select id="marca" name="marca">
+            <option value="">Selecione...</option>
+            <option value="iphone">iPhone</option>
+            <option value="samsung">Samsung</option>
+            <option value="xiaomi">Xiaomi</option>
+            <option value="motorola">Motorola</option>
+          </select>
+        
+          <label for="modelo">Selecione o modelo do celular:</label>
+          <select id="modelo" name="modelo" disabled>
+            <option value="">Selecione a marca primeiro</option>
+          </select>
+        
+          <label for="valor">Valor do Seguro:</label>
+          <input type="text" id="valor" name="valor" readonly>
+        
+          <input type="submit" value="Obter Cotação">
+        </form>
+      
+        <div class="quote-result" id="quote-result">
+          <h2>Cotação de Seguro</h2>
+          <p id="marca-result"></p>
+          <p id="modelo-result"></p>
+          <p id="valor-result"></p>
+        </div>
+      </div>
+      
+      <script>
+        var modelos = {
+          iphone: [
+            { modelo: "iPhone 13 Pro", seguro: 120 },
+            { modelo: "iPhone 13", seguro: 100 },
+            { modelo: "iPhone 12 Pro", seguro: 90 },
+            { modelo: "iPhone SE", seguro: 80 }
+          ],
+          samsung: [
+            { modelo: "Galaxy S21 Ultra", seguro: 110 },
+            { modelo: "Galaxy S21", seguro: 100 },
+            { modelo: "Galaxy Note 20 Ultra", seguro: 95 },
+            { modelo: "Galaxy A52", seguro: 80 }
+          ],
+          xiaomi: [
+            { modelo: "Mi 11 Pro", seguro: 95 },
+            { modelo: "Mi 11 Lite", seguro: 85 },
+            { modelo: "Redmi Note 10 Pro", seguro: 80 },
+            { modelo: "Redmi 9", seguro: 70 }
+          ],
+          motorola: [
+            { modelo: "Moto G Power", seguro: 70 },
+            { modelo: "Moto G Stylus", seguro: 65 },
+            { modelo: "Moto E7 Plus", seguro: 60 },
+            { modelo: "Moto G30", seguro: 55 }
+          ]
+        };
+        
+        var selectMarca = document.getElementById("marca");
+        var selectModelo = document.getElementById("modelo");
+        var inputValor = document.getElementById("valor");
+        var quoteResult = document.getElementById("quote-result");
+        var marcaResult = document.getElementById("marca-result");
+        var modeloResult = document.getElementById("modelo-result");
+        var valorResult = document.getElementById("valor-result");
+        
+        selectMarca.addEventListener("change", function() {
+          var selectedMarca = this.value;
+          selectModelo.innerHTML = "<option value=''>Selecione...</option>";
+          
+          if (selectedMarca) {
+            selectModelo.disabled = false;
+            
+            modelos[selectedMarca].forEach(function(item) {
+              var option = document.createElement("option");
+              option.value = item.seguro;
+              option.text = item.modelo;
+              selectModelo.appendChild(option);
+            });
+          } else {
+            selectModelo.disabled = true;
+          }
+          
+          inputValor.value = "";
+          quoteResult.style.display = "none";
+        });
+        
+        selectModelo.addEventListener("change", function() {
+          var selectedValor = this.value;
+          inputValor.value = selectedValor;
+        });
+        
+        document.getElementById("quote-form").addEventListener("submit", function(e) {
+          e.preventDefault();
+          
+          var selectedMarca = selectMarca.options[selectMarca.selectedIndex].text;
+          var selectedModelo = selectModelo.options[selectModelo.selectedIndex].text;
+          var valor = inputValor.value;
+          
+          marcaResult.textContent = "Marca: " + selectedMarca;
+          modeloResult.textContent = "Modelo: " + selectedModelo;
+          valorResult.textContent = "Valor do Seguro: R$" + valor;
+          quoteResult.style.display = "block";
+        });
+      </script>
+    </body>
+    </html>
+    </section>
+</body>
+</html>
+
+
+
+
+  <footer>
+    <p>&copy; 2023 Seguro de Celulares. Todos os direitos reservados.</p>
+  </footer>
+<script>var nomeUsuario = prompt("Qual é o seu nome?");
+ alert("Bem-vindo! a techsmart, " + nomeUsuario + "!");</script>
+<script>
+  window.addEventListener('scroll', function() {
+    var sections = document.querySelectorAll('.section');
+    sections.forEach(function(section) {
+      var sectionTop = section.offsetTop;
+      var sectionHeight = section.offsetHeight;
+      var scrollPosition = window.pageYOffset;
+      
+      if (scrollPosition >= sectionTop - sectionHeight / 2) {
+        section.classList.add('active');
+      }
+    });
+  });
+  </script>
+</body>
+</html>

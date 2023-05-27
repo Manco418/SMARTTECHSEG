@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Cotação de Seguro para Celulares</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      background-color: #f2f2f2;
+    }
+    
+    .container {
+      width: 400px;
+      padding: 20px;
+      background-color: #fff;
+      border-radius: 5px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+    
+    h1 {
+      font-size: 24px;
+      text-align: center;
+      margin-bottom: 20px;
+    }
+    
+    label {
+      font-weight: bold;
+      display: block;
+      margin-bottom: 10px;
+    }
+    
+    select {
+      padding: 5px;
+      width: 100%;
+      margin-bottom: 10px;
+    }
+    
+    input[type="submit"] {
+      padding: 10px 20px;
+      background-color: #007bff;
+      color: #fff;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      font-size: 16px;
+    }
+    
+    .quote-result {
+      display: none;
+      margin-top: 20px;
+    }
+    
+    .quote-result h2 {
+      font-size: 18px;
+      margin-bottom: 10px;
+    }
+    
+    .quote-result p {
+      font-size: 16px;
+      margin-bottom: 5px;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Cotação de Seguro para Celulares</h1>
+  
+    <form id="quote-form">
+      <label for="marca">Selecione a marca do celular:</label>
+      <select id="marca" name="marca">
+        <option value="">Selecione...</option>
+        <option value="iphone">iPhone</option>
+        <option value="samsung">Samsung</option>
+        <option value="xiaomi">Xiaomi</option>
+        <option value="motorola">Motorola</option>
+      </select>
+    
+      <label for="modelo">Selecione o modelo do celular:</label>
+      <select id="modelo" name="modelo" disabled>
+        <option value="">Selecione a marca primeiro</option>
+      </select>
+    
+      <label for="valor">Valor do Seguro:</label>
+      <input type="text" id="valor" name="valor" readonly>
+    
+      <input type="submit" value="Obter Cotação">
+    </form>
+  
+    <div class="quote-result" id="quote-result">
+      <h2>Cotação de Seguro</h2>
+      <p id="marca-result"></p>
+      <p id="modelo-result"></p>
+      <p id="valor-result"></p>
+    </div>
+  </div>
+  
+  <script>
+    var modelos = {
+      iphone: [
+        { modelo: "iPhone 13 Pro", seguro: 120 },
+        { modelo: "iPhone 13", seguro: 100 },
+        { modelo: "iPhone 12 Pro", seguro: 90 },
+        { modelo: "iPhone SE", seguro: 80 }
+      ],
+      samsung: [
+        { modelo: "Galaxy S21 Ultra", seguro: 110 },
+        { modelo: "Galaxy S21", seguro: 100 },
+        { modelo: "Galaxy Note 20 Ultra", seguro: 95 },
+        { modelo: "Galaxy A52", seguro: 80 }
+      ],
+      xiaomi: [
+        { modelo: "Mi 11 Pro", seguro: 95 },
+        { modelo: "Mi 11 Lite", seguro: 85 },
+        { modelo: "Redmi Note 10 Pro", seguro: 80 },
+        { modelo: "Redmi 9", seguro: 70 }
+      ],
+      motorola: [
+        { modelo: "Moto G Power", seguro: 70 },
+        { modelo: "Moto G Stylus", seguro: 65 },
+        { modelo: "Moto E7 Plus", seguro: 60 },
+        { modelo: "Moto G30", seguro: 55 }
+      ]
+    };
+    
+    var selectMarca = document.getElementById("marca");
+    var selectModelo = document.getElementById("modelo");
+    var inputValor = document.getElementById("valor");
+    var quoteResult = document.getElementById("quote-result");
+    var marcaResult = document.getElementById("marca-result");
+    var modeloResult = document.getElementById("modelo-result");
+    var valorResult = document.getElementById("valor-result");
+    
+    selectMarca.addEventListener("change", function() {
+      var selectedMarca = this.value;
+      selectModelo.innerHTML = "<option value=''>Selecione...</option>";
+      
+      if (selectedMarca) {
+        selectModelo.disabled = false;
+        
+        modelos[selectedMarca].forEach(function(item) {
+          var option = document.createElement("option");
+          option.value = item.seguro;
+          option.text = item.modelo;
+          selectModelo.appendChild(option);
+        });
+      } else {
+        selectModelo.disabled = true;
+      }
+      
+      inputValor.value = "";
+      quoteResult.style.display = "none";
+    });
+    
+    selectModelo.addEventListener("change", function() {
+      var selectedValor = this.value;
+      inputValor.value = selectedValor;
+    });
+    
+    document.getElementById("quote-form").addEventListener("submit", function(e) {
+      e.preventDefault();
+      
+      var selectedMarca = selectMarca.options[selectMarca.selectedIndex].text;
+      var selectedModelo = selectModelo.options[selectModelo.selectedIndex].text;
+      var valor = inputValor.value;
+      
+      marcaResult.textContent = "Marca: " + selectedMarca;
+      modeloResult.textContent = "Modelo: " + selectedModelo;
+      valorResult.textContent = "Valor do Seguro: R$" + valor;
+      quoteResult.style.display = "block";
+    });
+  </script>
+</body>
+</html>

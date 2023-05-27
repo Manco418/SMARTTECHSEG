@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Formulário de Cotação de Seguro de Celular</title>
+  <script>
+    function obterCotacao() {
+      var marcaSelecionada = document.getElementById("marca").value;
+      var modeloSelecionado = document.getElementById("modelo").value;
+      var cotacao = 0;
+      
+      // Adicione a lógica para calcular a cotação com base na marca e modelo selecionados
+      if (marcaSelecionada === "Samsung") {
+        if (modeloSelecionado === "Galaxy S21") {
+          cotacao = 80;
+        } else if (modeloSelecionado === "Galaxy Note 20") {
+          cotacao = 90;
+        } else if (modeloSelecionado === "Galaxy A52") {
+          cotacao = 70;
+        }
+      } else if (marcaSelecionada === "iPhone") {
+        if (modeloSelecionado === "iPhone 12") {
+          cotacao = 100;
+        } else if (modeloSelecionado === "iPhone 11") {
+          cotacao = 95;
+        } else if (modeloSelecionado === "iPhone SE") {
+          cotacao = 85;
+        }
+      } else if (marcaSelecionada === "Xiaomi") {
+        if (modeloSelecionado === "Mi 11") {
+          cotacao = 75;
+        } else if (modeloSelecionado === "Redmi Note 10 Pro") {
+          cotacao = 65;
+        } else if (modeloSelecionado === "Poco X3 Pro") {
+          cotacao = 70;
+        }
+      }
+      
+      // Exiba a cotação para o usuário
+      document.getElementById("cotacao").innerHTML = "A cotação para o modelo " + modeloSelecionado + " da marca " + marcaSelecionada + " é de R$" + cotacao.toFixed(2) + ".";
+    }
+  </script>
+</head>
+<body>
+  <h2>Formulário de Cotação de Seguro de Celular</h2>
+  
+  <form>
+    <label for="marca">Marca do Celular:</label>
+    <select id="marca" onchange="limparModelos()">
+      <option value="">Selecione a marca</option>
+      <option value="Samsung">Samsung</option>
+      <option value="iPhone">iPhone</option>
+      <option value="Xiaomi">Xiaomi</option>
+    </select><br><br>
+    
+    <label for="modelo">Modelo do Celular:</label>
+    <select id="modelo"></select><br><br>
+    
+    <button type="button" onclick="obterCotacao()">Obter Cotação</button>
+  </form>
+  
+  <div id="cotacao"></div>
+  
+  <script>
+    function limparModelos() {
+      var modeloSelect = document.getElementById("modelo");
+      modeloSelect.innerHTML = "";
+    }
+    
+    document.getElementById("marca").addEventListener("change", function() {
+      var marcaSelecionada = this.value;
+      var modeloSelect = document.getElementById("modelo");
+      modeloSelect.innerHTML = "";
+      
+      if (marcaSelecionada === "Samsung") {
+        var modelosSamsung = ["Galaxy S21", "Galaxy Note 20", "Galaxy A52"];
+        
+        for (var i = 0; i < modelosSamsung.length; i++) {
+          var option = document.createElement("option");
+          option.value = modelosSamsung[i];
+          option.text = modelosSamsung[i];
+          modeloSelect.appendChild(option);
+        }
+      } else if (marcaSelecionada === "iPhone") {
+        var modelosiPhone = ["iPhone 12", "iPhone 11", "iPhone SE"];
+        
+        for (var i = 0; i < modelosiPhone.length; i++) {
+          var option = document.createElement("option");
+          option.value = modelosiPhone[i];
+          option.text = modelosiPhone[i];
+          modeloSelect.appendChild(option);
+        }
+      } else if (marcaSelecionada === "Xiaomi") {
+        var modelosXiaomi = ["Mi 11", "Redmi Note 10 Pro", "Poco X3 Pro"];
+        
+        for (var i = 0; i < modelosXiaomi.length; i++) {
+          var option = document.createElement("option");
+          option.value = modelosXiaomi[i];
+          option.text = modelosXiaomi[i];
+          modeloSelect.appendChild(option);
+        }
+      }
+    });
+  </script>
+</body>
+</html>
